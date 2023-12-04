@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bq5uwqfcvim4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7k8v"]
-size = Vector2(0.93692, 514.884)
+size = Vector2(1.08628, 515.814)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5eyn"]
 size = Vector2(9.97342, 15.8139)
@@ -14,7 +14,7 @@ position = Vector2(1, 0)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-21, 375.5)
+position = Vector2(-20, 373.5)
 scale = Vector2(36.8229, -2.15)
 shape = SubResource("RectangleShape2D_g7k8v")
 

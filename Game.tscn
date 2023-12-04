@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://waic0mjlsfy1"]
+[gd_scene load_steps=11 format=3 uid="uid://waic0mjlsfy1"]
 
 [ext_resource type="PackedScene" uid="uid://duxv21xnjkro6" path="res://Assets/Paddle.tscn" id="1_ilq27"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_qpaqf"]
@@ -9,6 +9,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skc88"]
 size = Vector2(35.2227, 19.1429)
+
+[sub_resource type="Theme" id="Theme_pfofv"]
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_nb6kg"]
+default_font_size = 60
+
+[sub_resource type="Theme" id="Theme_lxl20"]
+default_font_size = 30
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qpaqf")
@@ -54,8 +63,8 @@ rotation = 3.14159
 [node name="Scores" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1281.0
+offset_bottom = 126.0
 script = ExtResource("5_5n5dl")
 
 [node name="P1Score" type="Label" parent="Scores"]
@@ -78,5 +87,46 @@ theme = ExtResource("6_jlhv0")
 text = "0"
 horizontal_alignment = 1
 
+[node name="GameOver" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1283.0
+offset_bottom = 723.0
+
+[node name="GameOverText" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 156.0
+offset_right = 1046.0
+offset_bottom = 293.0
+theme = SubResource("Theme_pfofv")
+theme_type_variation = &"HeaderLarge"
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="WhoWon" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 391.0
+offset_right = 1039.0
+offset_bottom = 474.0
+theme = SubResource("Theme_nb6kg")
+theme_type_variation = &"HeaderMedium"
+text = "PX is the winner"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 490.0
+offset_right = 760.0
+offset_bottom = 545.0
+theme = SubResource("Theme_lxl20")
+text = "Click to restart"
+
+[connection signal="property_list_changed" from="." to="Scores" method="update_score"]
 [connection signal="body_entered" from="Wall1" to="." method="_on_paddle1_miss"]
 [connection signal="body_entered" from="Wall2" to="." method="_on_paddle2_miss"]
+[connection signal="button_up" from="GameOver/Restart" to="." method="restart_game"]

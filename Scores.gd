@@ -6,8 +6,8 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+# Update points
+func update_score():
 	var Game = get_node("..")
 	get_node("P1Score").text = str(Game.p1_score)
 	get_node("P2Score").text = str(Game.p2_score)
