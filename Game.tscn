@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://waic0mjlsfy1"]
+
+[ext_resource type="PackedScene" uid="uid://duxv21xnjkro6" path="res://Assets/Paddle.tscn" id="1_ilq27"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_qpaqf"]
+[ext_resource type="PackedScene" uid="uid://cd6e7xq0mf16u" path="res://Assets/Ball.tscn" id="2_yxd82"]
+[ext_resource type="PackedScene" uid="uid://bq5uwqfcvim4x" path="res://Assets/Wall.tscn" id="3_n68qh"]
+[ext_resource type="Script" path="res://Scripts/Wall.gd" id="5_uni0x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skc88"]
+size = Vector2(35.2227, 19.1429)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_qpaqf")
+
+[node name="Paddle" parent="." instance=ExtResource("1_ilq27")]
+position = Vector2(21, 102)
+
+[node name="Paddle2" parent="." instance=ExtResource("1_ilq27")]
+position = Vector2(1259, 361)
+scale = Vector2(40.1177, 720.56)
+speed = 0
+
+[node name="Ball" parent="." instance=ExtResource("2_yxd82")]
+position = Vector2(616, 362)
+velocity = Vector2(-500, -500)
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.99187, 1)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(649, -17)
+scale = Vector2(36.8229, -1.75)
+shape = SubResource("RectangleShape2D_skc88")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 757)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(649, -17)
+scale = Vector2(36.8229, -1.75)
+shape = SubResource("RectangleShape2D_skc88")
+
+[node name="Wall1" parent="." instance=ExtResource("3_n68qh")]
+position = Vector2(0, 1)
+disable_mode = 2
+script = ExtResource("5_uni0x")
+
+[node name="Wall2" parent="." instance=ExtResource("3_n68qh")]
+position = Vector2(1320, -1)
+
+[connection signal="body_entered" from="Wall1" to="Wall1" method="_on_body_entered"]

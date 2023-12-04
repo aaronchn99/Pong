@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd6e7xq0mf16u"]
+
+[ext_resource type="Script" path="res://Scripts/Ball.gd" id="1_8yuuo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owara"]
+size = Vector2(1, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d8xkw"]
+
+[node name="Ball" type="StaticBody2D"]
+scale = Vector2(50, 50.1036)
+collision_mask = 3
+script = ExtResource("1_8yuuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_owara")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_d8xkw")
