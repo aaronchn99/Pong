@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd6e7xq0mf16u"]
+[gd_scene load_steps=5 format=3 uid="uid://cd6e7xq0mf16u"]
 
 [ext_resource type="Script" path="res://Scripts/Ball.gd" id="1_8yuuo"]
+[ext_resource type="AudioStream" uid="uid://f1g4tcg2pmf6" path="res://Assets/PONG_BEEP.mp3" id="2_pl642"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owara"]
 size = Vector2(50, 50)
@@ -19,3 +20,6 @@ shape = SubResource("RectangleShape2D_owara")
 position = Vector2(-1, 0)
 scale = Vector2(50, 50)
 texture = SubResource("CanvasTexture_d8xkw")
+
+[node name="CollideSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pl642")
