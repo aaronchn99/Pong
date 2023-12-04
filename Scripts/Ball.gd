@@ -13,7 +13,13 @@ func _ready():
 func _physics_process(delta):
 	var collide_info = move_and_collide(velocity * delta)
 	if collide_info:
-		velocity = velocity.bounce(collide_info.get_normal())
+		var Collider = collide_info.get_collider()
+		if Collider.get_collision_layer() == 2:
+			velocity = velocity.bounce(collide_info.get_normal())
+		else:
+			var speed = velocity.length()
+			var direction = (position - Collider.position).normalized()
+			velocity = speed * direction
 
 # Moves ball back to starting position
 func reset():
