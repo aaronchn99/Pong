@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://waic0mjlsfy1"]
+[gd_scene load_steps=14 format=3 uid="uid://waic0mjlsfy1"]
 
 [ext_resource type="PackedScene" uid="uid://duxv21xnjkro6" path="res://Assets/Paddle.tscn" id="1_ilq27"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_qpaqf"]
 [ext_resource type="PackedScene" uid="uid://cd6e7xq0mf16u" path="res://Assets/Ball.tscn" id="2_yxd82"]
 [ext_resource type="PackedScene" uid="uid://bq5uwqfcvim4x" path="res://Assets/Wall.tscn" id="3_n68qh"]
-[ext_resource type="Script" path="res://Scores.gd" id="5_5n5dl"]
+[ext_resource type="Script" path="res://Scripts/Scores.gd" id="5_5n5dl"]
 [ext_resource type="Theme" uid="uid://ne82vxlb05pk" path="res://Assets/label_font.tres" id="6_jlhv0"]
+[ext_resource type="Texture2D" uid="uid://8tckxcyx5wap" path="res://Assets/pause-solid.svg" id="7_s1bso"]
+[ext_resource type="Script" path="res://Scripts/Pause.gd" id="8_73dv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skc88"]
 size = Vector2(35.2227, 19.1429)
@@ -18,6 +20,9 @@ default_font_size = 60
 
 [sub_resource type="Theme" id="Theme_lxl20"]
 default_font_size = 30
+
+[sub_resource type="Theme" id="Theme_hteqr"]
+default_font_size = 70
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qpaqf")
@@ -126,7 +131,41 @@ offset_bottom = 545.0
 theme = SubResource("Theme_lxl20")
 text = "Click to restart"
 
+[node name="Pause" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pause" type="Button" parent="Pause"]
+offset_left = 1200.0
+offset_top = 11.0
+offset_right = 1269.0
+offset_bottom = 80.0
+icon = ExtResource("7_s1bso")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_73dv8")
+
+[node name="PauseMenu" type="Control" parent="Pause"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseLabel" type="Label" parent="Pause/PauseMenu"]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 190.0
+offset_right = 906.0
+offset_bottom = 283.0
+theme = SubResource("Theme_hteqr")
+text = "Paused"
+horizontal_alignment = 1
+
 [connection signal="property_list_changed" from="." to="Scores" method="update_score"]
 [connection signal="body_entered" from="Wall1" to="." method="_on_paddle1_miss"]
 [connection signal="body_entered" from="Wall2" to="." method="_on_paddle2_miss"]
 [connection signal="button_up" from="GameOver/Restart" to="." method="restart_game"]
+[connection signal="button_up" from="Pause/Pause" to="Pause/Pause" method="_on_button_up"]

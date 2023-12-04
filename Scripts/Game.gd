@@ -46,6 +46,7 @@ func check_game_over():
 	get_tree().paused = true
 	get_node("GameOver/WhoWon").text = "P%s is the winner" % (1 if p1_score == MAX_SCORE else 2)
 	get_node("GameOver").visible = true
+	get_node("Pause").visible = false
 
 func restart_game():
 	set_score(1, 0)
@@ -53,3 +54,4 @@ func restart_game():
 	respawn_ball(1)
 	get_tree().paused = false
 	get_node("GameOver").visible = false
+	get_node("Pause").visible = true
