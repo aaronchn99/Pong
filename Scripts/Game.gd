@@ -49,9 +49,15 @@ func check_game_over():
 	get_node("Pause").visible = false
 
 func restart_game():
+	$GameOver.visible = false
+	$Pause.visible = true
+	$Pause/PauseMenu.visible = false
+	$Countdown.visible = true
+	$Countdown/Timer.start()
 	set_score(1, 0)
 	set_score(2, 0)
 	respawn_ball(1)
+
+func end_game():
 	get_tree().paused = false
-	get_node("GameOver").visible = false
-	get_node("Pause").visible = true
+	get_tree().reload_current_scene()

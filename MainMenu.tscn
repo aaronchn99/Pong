@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://db0nxnokjp1o7"]
+
+[ext_resource type="Theme" uid="uid://b2q1nbpxstwe0" path="res://Assets/button_font.tres" id="1_88171"]
+[ext_resource type="Script" path="res://Scripts/UI/FirstMenu.gd" id="1_s1db2"]
+[ext_resource type="Script" path="res://Scripts/UI/DifficultyMenu.gd" id="3_qelf5"]
+
+[sub_resource type="FontVariation" id="FontVariation_vsp2k"]
+variation_embolden = 0.7
+
+[sub_resource type="Theme" id="Theme_oq1ge"]
+default_font = SubResource("FontVariation_vsp2k")
+default_font_size = 80
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 148.0
+offset_right = 954.0
+offset_bottom = 273.0
+theme = SubResource("Theme_oq1ge")
+text = "Pong"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FirstMenu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1281.0
+offset_bottom = 719.0
+script = ExtResource("1_s1db2")
+
+[node name="PlayButton" type="Button" parent="FirstMenu"]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 378.0
+offset_right = 750.0
+offset_bottom = 434.0
+theme = ExtResource("1_88171")
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="FirstMenu"]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 470.0
+offset_right = 751.0
+offset_bottom = 526.0
+theme = ExtResource("1_88171")
+text = "Quit"
+
+[node name="DifficultyMenu" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 1281.0
+offset_bottom = 719.0
+script = ExtResource("3_qelf5")
+
+[node name="EasyButton" type="Button" parent="DifficultyMenu"]
+layout_mode = 0
+offset_left = 572.0
+offset_top = 289.0
+offset_right = 749.0
+offset_bottom = 345.0
+theme = ExtResource("1_88171")
+text = "Easy"
+
+[node name="NormalButton" type="Button" parent="DifficultyMenu"]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 381.0
+offset_right = 750.0
+offset_bottom = 437.0
+theme = ExtResource("1_88171")
+text = "Normal"
+
+[node name="HardButton" type="Button" parent="DifficultyMenu"]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 470.0
+offset_right = 750.0
+offset_bottom = 526.0
+theme = ExtResource("1_88171")
+text = "Hard"
+
+[node name="BackButton" type="Button" parent="DifficultyMenu"]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 593.0
+offset_right = 751.0
+offset_bottom = 649.0
+theme = ExtResource("1_88171")
+text = "< Back"
+
+[connection signal="button_up" from="FirstMenu/PlayButton" to="FirstMenu" method="_play_game"]
+[connection signal="button_up" from="FirstMenu/QuitButton" to="FirstMenu" method="_quit_game"]
+[connection signal="button_up" from="DifficultyMenu/EasyButton" to="DifficultyMenu" method="_play_game" binds= ["Easy"]]
+[connection signal="button_up" from="DifficultyMenu/NormalButton" to="DifficultyMenu" method="_play_game" binds= ["Normal"]]
+[connection signal="button_up" from="DifficultyMenu/HardButton" to="DifficultyMenu" method="_play_game" binds= ["Hard"]]
+[connection signal="button_up" from="DifficultyMenu/BackButton" to="DifficultyMenu" method="_go_back"]
