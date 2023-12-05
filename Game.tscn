@@ -34,9 +34,12 @@ is_human = true
 
 [node name="Paddle2" parent="." instance=ExtResource("1_ilq27")]
 position = Vector2(1259, 361)
+ai_type = 4
+UPDATE_INTERVAL = 10
 
 [node name="Ball" parent="." instance=ExtResource("2_yxd82")]
 position = Vector2(640, 360)
+start_speed = 1000
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
 position = Vector2(1, 0)
@@ -139,6 +142,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Pause" type="Button" parent="Pause"]
+layout_mode = 0
 offset_left = 1200.0
 offset_top = 11.0
 offset_right = 1269.0
