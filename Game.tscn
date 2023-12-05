@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="8_73dv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skc88"]
-size = Vector2(35.2227, 19.1429)
+size = Vector2(35.0532, 19.1429)
 
 [sub_resource type="Theme" id="Theme_pfofv"]
 default_font_size = 100
@@ -26,16 +26,21 @@ default_font_size = 70
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qpaqf")
-MAX_SCORE = 3
+MAX_SCORE = 10
 
 [node name="Paddle" parent="." instance=ExtResource("1_ilq27")]
 position = Vector2(21, 102)
 is_human = true
+ai_type = 2
+UPDATE_INTERVAL = 10
 
 [node name="Paddle2" parent="." instance=ExtResource("1_ilq27")]
 position = Vector2(1259, 361)
-ai_type = 4
+scale = Vector2(40.2899, 192.738)
+speed = 600
+ai_type = 1
 UPDATE_INTERVAL = 10
+CORRUPT_CHANCE = 0.95
 
 [node name="Ball" parent="." instance=ExtResource("2_yxd82")]
 position = Vector2(640, 360)
@@ -47,16 +52,16 @@ scale = Vector2(0.99187, 1)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
-position = Vector2(649, -17)
+position = Vector2(644.371, -17)
 scale = Vector2(36.8229, -1.75)
 shape = SubResource("RectangleShape2D_skc88")
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(0, 757)
+position = Vector2(0, 720)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(649, -17)
+position = Vector2(641.25, 19)
 scale = Vector2(36.8229, -1.75)
 shape = SubResource("RectangleShape2D_skc88")
 

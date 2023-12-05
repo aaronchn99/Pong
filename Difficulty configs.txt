@@ -1,0 +1,11 @@
+F, FS(10), FS(20), FC(0.95), FC(0.8), FCS(0.95, 10), FCS(0.8, 20)
+
+Order of skill
+FC(0.95), F, FC(0.8), FS(10), FS(20), FCS(0.95, 10), FCS(0.8, 20)
+
+Easy FS(10)
+Normal FC(0.95)
+Hard F
+Harder T
+
+600 speed on both sides
