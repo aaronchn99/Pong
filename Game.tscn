@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://f1g4tcg2pmf6" path="res://Assets/PONG_BEEP.mp3" id="10_y5gr1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skc88"]
-size = Vector2(35.0532, 19.1429)
+size = Vector2(1265, 26.571)
 
 [sub_resource type="Theme" id="Theme_pfofv"]
 default_font_size = 100
@@ -34,13 +34,13 @@ script = ExtResource("1_qpaqf")
 MAX_SCORE = 10
 
 [node name="Paddle" parent="." instance=ExtResource("1_ilq27")]
-position = Vector2(21, 102)
+position = Vector2(-5, 102)
 is_human = true
 ai_type = 2
 UPDATE_INTERVAL = 10
 
 [node name="Paddle2" parent="." instance=ExtResource("1_ilq27")]
-position = Vector2(1259, 361)
+position = Vector2(1284, 361)
 scale = Vector2(40.2899, 192.738)
 ai_type = 1
 UPDATE_INTERVAL = 10
@@ -56,8 +56,8 @@ scale = Vector2(0.99187, 1)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
-position = Vector2(644.371, -17)
-scale = Vector2(36.8229, -1.75)
+position = Vector2(644.238, -16)
+rotation = 3.14159
 shape = SubResource("RectangleShape2D_skc88")
 
 [node name="Floor" type="StaticBody2D" parent="."]
@@ -65,8 +65,7 @@ position = Vector2(0, 720)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(641.25, 19)
-scale = Vector2(36.8229, -1.75)
+position = Vector2(644.238, 13)
 shape = SubResource("RectangleShape2D_skc88")
 
 [node name="Wall1" parent="." instance=ExtResource("3_n68qh")]
@@ -187,6 +186,7 @@ text = "Paused"
 horizontal_alignment = 1
 
 [node name="Restart" type="Button" parent="Pause/PauseMenu"]
+layout_mode = 0
 offset_left = 363.0
 offset_top = 491.0
 offset_right = 605.0
@@ -195,6 +195,7 @@ theme = SubResource("Theme_lxl20")
 text = "Restart"
 
 [node name="Return" type="Button" parent="Pause/PauseMenu"]
+layout_mode = 0
 offset_left = 671.0
 offset_top = 495.0
 offset_right = 913.0

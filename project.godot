@@ -11,6 +11,10 @@ config_version=5
 [application]
 
 config/name="Pong"
+config/description="By aaronchn99 (AKA SangerHD)
+Developed with Godot 4.2"
+config/version="0.1"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -18,6 +22,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="viewport"
 
 [rendering]
 

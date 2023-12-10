@@ -3,7 +3,7 @@ extends StaticBody2D
 @export var speed : int
 @export var is_human : bool
 
-enum AI_Type {RANDOM, FOLLOW, FOLLOW_STICKY, FOLLOW_CORRUPT, FOLLOW_CORRUPT_STICKY}
+enum AI_Type {RANDOM, FOLLOW, FOLLOW_STICKY, FOLLOW_CORRUPT, FOLLOW_CORRUPT_STICKY, TRAJECTORY}
 @export var ai_type : AI_Type
 
 var Rng = RandomNumberGenerator.new()
@@ -14,13 +14,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var motion = Vector2.DOWN * speed * delta;
-	
+func _physics_process(delta):
+	var motion = Vector2.DOWN * speed * delta
 	motion *= human_control() if is_human else cpu_control()
-	
-	if not test_move(transform, motion):
-		position += motion
+	move_and_collide(motion)
 
 func human_control():
 	if Input.is_action_pressed('ui_up'):
@@ -67,6 +64,13 @@ func follow_corrupt_sticky():
 		countdown = UPDATE_INTERVAL
 	return dir
 
+# Positions to ball's trajectory
+func trajectory_ai():
+	var Ball = get_node("../Ball")
+	var Floor = get_node("../Floor")
+	var Ceil = get_node("../Ceiling")
+	var dx = Ball.position.x - position.x
+
 func cpu_control():
 	if ai_type == AI_Type.RANDOM:
 		return random_ai()
@@ -78,4 +82,6 @@ func cpu_control():
 		return follow_corrupt()
 	elif ai_type == AI_Type.FOLLOW_CORRUPT_STICKY:
 		return follow_corrupt_sticky()
+	elif ai_type == AI_Type.TRAJECTORY:
+		return trajectory_ai()
 	
