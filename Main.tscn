@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0auvwni15fau"]
+[gd_scene load_steps=3 format=3 uid="uid://d0auvwni15fau"]
 
 [ext_resource type="PackedScene" uid="uid://db0nxnokjp1o7" path="res://MainMenu.tscn" id="1_3fnuc"]
+[ext_resource type="PackedScene" uid="uid://waic0mjlsfy1" path="res://Game.tscn" id="2_phcq6"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -12,3 +13,25 @@ grow_vertical = 2
 
 [node name="MainMenu" parent="." instance=ExtResource("1_3fnuc")]
 layout_mode = 1
+
+[node name="GamePreview" parent="." instance=ExtResource("2_phcq6")]
+modulate = Color(0.231373, 0.231373, 0.231373, 1)
+show_behind_parent = true
+
+[node name="Paddle" parent="GamePreview" index="0"]
+is_human = false
+ai_type = 1
+
+[node name="Paddle2" parent="GamePreview" index="1"]
+ai_type = 1
+
+[node name="Pause" parent="GamePreview" index="9"]
+visible = false
+
+[node name="Countdown" parent="GamePreview" index="10"]
+visible = false
+
+[node name="Timer" parent="GamePreview/Countdown" index="1"]
+wait_time = 0.001
+
+[editable path="GamePreview"]

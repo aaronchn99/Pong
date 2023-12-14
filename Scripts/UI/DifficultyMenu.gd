@@ -34,6 +34,7 @@ func _go_back():
 
 func _play_game(difficulty : String):
 	$/root/Main/MainMenu.visible = false
+	$/root/Main/GamePreview.queue_free()
 	$/root/Main.add_child(game_scene.instantiate())
 	
 	var config = difficulty_config[difficulty]
