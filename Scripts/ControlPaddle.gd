@@ -3,7 +3,10 @@ extends StaticBody2D
 @export var speed : int
 @export var is_human : bool
 
-enum AI_Type {RANDOM, FOLLOW, FOLLOW_STICKY, FOLLOW_CORRUPT, FOLLOW_CORRUPT_STICKY, TRAJECTORY}
+enum AI_Type {
+	RANDOM, FOLLOW, FOLLOW_STICKY,
+	FOLLOW_CORRUPT, FOLLOW_CORRUPT_STICKY,
+	TRAJECTORY, TRAJECTORY_NO_REFLECT}
 @export var ai_type : AI_Type
 
 var Rng = RandomNumberGenerator.new()
@@ -66,10 +69,52 @@ func follow_corrupt_sticky():
 
 # Positions to ball's trajectory
 func trajectory_ai():
+	# All the objects we need
 	var Ball = get_node("../Ball")
 	var Floor = get_node("../Floor")
 	var Ceil = get_node("../Ceiling")
-	var dx = Ball.position.x - position.x
+
+	var Dx = position.x - Ball.position.x
+
+	# Do nothing if ball going opposite
+	if Ball.velocity.x * Dx <= 0:
+		return 0;
+
+	var dy = Ball.velocity.y / Ball.velocity.x * Dx # Projected position
+	var y = Ball.position.y
+	var y_min = Ceil.position.y
+	var y_max = Floor.position.y
+	var ball_h = Ball.get_node('CollisionShape2D').shape.size.y
+	# Reflect trajectory until within bounds
+	while y + dy < y_min or y_max < y + dy:
+		var y_b = y_min + ball_h/2 if y + dy < y_min else y_max - ball_h/2
+		dy -= 2 * (y+dy-y_b)
+
+	var Dy = y + dy - position.y
+	if abs(Dy) < 10:
+		return 0
+	return 1 if Dy > 0 else -1
+
+# Positions to ball's trajectory (may be off bounds)
+func trajectory_non_reflect():
+	# All the objects we need
+	var Ball = get_node("../Ball")
+	var Floor = get_node("../Floor")
+	var Ceil = get_node("../Ceiling")
+
+	var Dx = position.x - Ball.position.x
+
+	# Do nothing if ball going opposite
+	if Ball.velocity.x * Dx <= 0:
+		return 0;
+
+	var dy = Ball.velocity.y / Ball.velocity.x * Dx # Projected position
+	var y = Ball.position.y
+
+	var Dy = y + dy - position.y
+	if abs(Dy) < 10:
+		return 0
+	return 1 if Dy > 0 else -1
 
 func cpu_control():
 	if ai_type == AI_Type.RANDOM:
@@ -84,4 +129,6 @@ func cpu_control():
 		return follow_corrupt_sticky()
 	elif ai_type == AI_Type.TRAJECTORY:
 		return trajectory_ai()
+	elif ai_type == AI_Type.TRAJECTORY_NO_REFLECT:
+		return trajectory_non_reflect()
 	

@@ -5,19 +5,19 @@ var game_scene = preload("res://Game.tscn")
 @export var difficulty_config = {
 	'Easy': {
 		'Paddle2' : {
-			'ai_type': 2,
-			'UPDATE_INTERVAL': 10,
-		}
-	},
-	'Normal': {
-		'Paddle2' : {
 			'ai_type': 3,
 			'CORRUPT_CHANCE': 0.95,
 		}
 	},
-	'Hard': {
+	'Normal': {
 		'Paddle2' : {
 			'ai_type': 1,
+		}
+	},
+	'Hard': {
+		'Paddle2' : {
+			'ai_type': 6,
+			'speed': 550
 		}
 	}
 }
