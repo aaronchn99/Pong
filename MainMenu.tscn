@@ -88,6 +88,16 @@ offset_bottom = 526.0
 theme = ExtResource("1_88171")
 text = "Hard"
 
+[node name="ImpossibleButton" type="Button" parent="DifficultyMenu"]
+visible = false
+layout_mode = 0
+offset_left = 974.0
+offset_top = 383.0
+offset_right = 1151.0
+offset_bottom = 439.0
+theme = ExtResource("1_88171")
+text = "Impossible"
+
 [node name="BackButton" type="Button" parent="DifficultyMenu"]
 layout_mode = 0
 offset_left = 574.0
@@ -102,4 +112,5 @@ text = "< Back"
 [connection signal="button_up" from="DifficultyMenu/EasyButton" to="DifficultyMenu" method="_play_game" binds= ["Easy"]]
 [connection signal="button_up" from="DifficultyMenu/NormalButton" to="DifficultyMenu" method="_play_game" binds= ["Normal"]]
 [connection signal="button_up" from="DifficultyMenu/HardButton" to="DifficultyMenu" method="_play_game" binds= ["Hard"]]
+[connection signal="button_up" from="DifficultyMenu/ImpossibleButton" to="DifficultyMenu" method="_play_game" binds= ["Impossible"]]
 [connection signal="button_up" from="DifficultyMenu/BackButton" to="DifficultyMenu" method="_go_back"]
