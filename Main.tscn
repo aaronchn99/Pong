@@ -11,12 +11,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenu" parent="." instance=ExtResource("1_3fnuc")]
-layout_mode = 1
-
 [node name="GamePreview" parent="." instance=ExtResource("2_phcq6")]
 modulate = Color(0.231373, 0.231373, 0.231373, 1)
 show_behind_parent = true
+MAX_SCORE = 9999
 
 [node name="Paddle" parent="GamePreview" index="0"]
 is_human = false
@@ -24,6 +22,18 @@ ai_type = 1
 
 [node name="Paddle2" parent="GamePreview" index="1"]
 ai_type = 1
+
+[node name="GameOverText" parent="GamePreview/GameOver" index="0"]
+visible = false
+
+[node name="WhoWon" parent="GamePreview/GameOver" index="1"]
+visible = false
+
+[node name="Restart" parent="GamePreview/GameOver" index="2"]
+visible = false
+
+[node name="Return" parent="GamePreview/GameOver" index="3"]
+visible = false
 
 [node name="Pause" parent="GamePreview" index="9"]
 visible = false
@@ -33,5 +43,9 @@ visible = false
 
 [node name="Timer" parent="GamePreview/Countdown" index="1"]
 wait_time = 0.001
+
+[node name="MainMenu" parent="." instance=ExtResource("1_3fnuc")]
+process_mode = 3
+layout_mode = 1
 
 [editable path="GamePreview"]
