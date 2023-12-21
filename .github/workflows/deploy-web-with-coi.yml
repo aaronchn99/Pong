@@ -10,16 +10,38 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
             - name: Add COI
-              run: 
-                LATEST_BUILD=`ls -r Builds/Web/ | grep '^v.*' | head -n 1`;
-                if [ ! -f ./Builds/Web/$LATEST_BUILD/coi-serviceworker.min.js ];
+              id: add_coi
+              run: |
+                LATEST_BUILD=`ls -r Builds/Web/ | grep '^v.*' | head -n 1`
+                echo "latest_build=${LATEST_BUILD}" >> "$GITHUB_OUTPUT"
+                if [ ! -f ./Builds/Web/$LATEST_BUILD/coi-serviceworker.min.js ]
                 then
-                    wget https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.min.js -P ./Builds/Web/$LATEST_BUILD;
-                fi;
-                if [[ -z $(cat ./Builds/Web/$LATEST_BUILD/index.html | grep 'coi-serviceworker') ]];
+                    wget https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.min.js -P ./Builds/Web/$LATEST_BUILD
+                fi
+                if [[ -z $(cat ./Builds/Web/$LATEST_BUILD/index.html | grep 'coi-serviceworker') ]]
                 then
-                    sed -i '7i\\t\t<script src="coi-serviceworker.min.js"></script>' ./Builds/Web/$LATEST_BUILD/index.html;
-                fi;
-                git add .;
-                git commit -m 'Inserted COI into latest build '$LATEST_BUILD;
-                git push;
+                    sed -i '7i\\t\t<script src="coi-serviceworker.min.js"></script>' ./Builds/Web/$LATEST_BUILD/index.html
+                fi
+                git add .
+                git commit -m 'Inserted COI into latest build '$LATEST_BUILD
+            - name: Setup Pages
+              id: pages
+              uses: actions/configure-pages@v3
+            - name: Build with Jekyll
+              uses: actions/jekyll-build-pages@v1
+              with:
+                source: ./Builds/Web/${{ steps.add_coi.outputs.latest_build }}
+                destination: ./_site
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v2
+     # Deployment job
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{steps.deployment.outputs.page_url}}
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v2
