@@ -16,11 +16,8 @@ modulate = Color(0.231373, 0.231373, 0.231373, 1)
 show_behind_parent = true
 MAX_SCORE = 9999
 
-[node name="Paddle" parent="GamePreview" index="0"]
+[node name="Paddle" parent="GamePreview" index="1"]
 is_human = false
-ai_type = 1
-
-[node name="Paddle2" parent="GamePreview" index="1"]
 ai_type = 1
 
 [node name="GameOverText" parent="GamePreview/GameOver" index="0"]
@@ -35,10 +32,10 @@ visible = false
 [node name="Return" parent="GamePreview/GameOver" index="3"]
 visible = false
 
-[node name="Pause" parent="GamePreview" index="9"]
+[node name="Pause" parent="GamePreview" index="10"]
 visible = false
 
-[node name="Countdown" parent="GamePreview" index="10"]
+[node name="Countdown" parent="GamePreview" index="11"]
 visible = false
 
 [node name="Timer" parent="GamePreview/Countdown" index="1"]

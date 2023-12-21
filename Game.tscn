@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://waic0mjlsfy1"]
+[gd_scene load_steps=18 format=3 uid="uid://waic0mjlsfy1"]
 
 [ext_resource type="PackedScene" uid="uid://duxv21xnjkro6" path="res://Assets/Paddle.tscn" id="1_ilq27"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_qpaqf"]
+[ext_resource type="Texture2D" uid="uid://crdsiyylbmw3e" path="res://Assets/img/badminton_court.png" id="2_72vod"]
 [ext_resource type="PackedScene" uid="uid://cd6e7xq0mf16u" path="res://Assets/Ball.tscn" id="2_yxd82"]
 [ext_resource type="PackedScene" uid="uid://bq5uwqfcvim4x" path="res://Assets/Wall.tscn" id="3_n68qh"]
 [ext_resource type="Script" path="res://Scripts/Scores.gd" id="5_5n5dl"]
@@ -32,6 +33,14 @@ default_font_size = 80
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qpaqf")
 MAX_SCORE = 10
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(0.0980392, 0.0980392, 0.0980392, 1)
+position = Vector2(640, 360.25)
+texture = ExtResource("2_72vod")
 
 [node name="Paddle" parent="." instance=ExtResource("1_ilq27")]
 position = Vector2(-5, 102)
