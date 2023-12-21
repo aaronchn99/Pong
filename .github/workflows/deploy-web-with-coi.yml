@@ -13,11 +13,11 @@ jobs:
               run: 
                 LATEST_BUILD=`ls -r Builds/Web/ | grep '^v.*' | head -n 1`;
                 if [ ! -f ./Builds/Web/$LATEST_BUILD/coi-serviceworker.min.js ];
-                then;
+                then
                     wget https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.min.js -P ./Builds/Web/$LATEST_BUILD;
                 fi;
                 if [[ -z $(cat ./Builds/Web/$LATEST_BUILD/index.html | grep 'coi-serviceworker') ]];
-                then;
+                then
                     sed -i '7i\\t\t<script src="coi-serviceworker.min.js"></script>' ./Builds/Web/$LATEST_BUILD/index.html;
                 fi;
                 git add .;
