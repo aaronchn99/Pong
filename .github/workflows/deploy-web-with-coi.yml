@@ -21,9 +21,8 @@ jobs:
                 if [[ -z $(cat ./Builds/Web/$LATEST_BUILD/index.html | grep 'coi-serviceworker') ]]
                 then
                     sed -i '7i\\t\t<script src="coi-serviceworker.min.js"></script>' ./Builds/Web/$LATEST_BUILD/index.html
+                    echo "Written script tag into index.html"
                 fi
-                git add .
-                git commit -m 'Inserted COI into latest build '$LATEST_BUILD
             - name: Setup Pages
               id: pages
               uses: actions/configure-pages@v3
