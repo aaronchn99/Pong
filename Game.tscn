@@ -58,6 +58,7 @@ CORRUPT_CHANCE = 0.95
 [node name="Ball" parent="." instance=ExtResource("2_yxd82")]
 position = Vector2(640, 360)
 start_speed = 1000
+max_speed = 1500
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
 position = Vector2(1, 0)

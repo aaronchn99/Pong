@@ -2,6 +2,9 @@ extends StaticBody2D
 
 @export var speed : int
 @export var is_human : bool
+var width = 200:
+	set(new_w):
+		scale.y = new_w
 
 enum AI_Type {
 	RANDOM, FOLLOW, FOLLOW_STICKY,

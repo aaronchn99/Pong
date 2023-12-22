@@ -23,6 +23,7 @@ var game_scene = preload("res://Game.tscn")
 	'Impossible': {
 		'Paddle2' : {
 			'ai_type': 5,
+			'width': 10,
 		}
 	},
 }

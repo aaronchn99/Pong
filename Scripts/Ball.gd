@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @export var start_speed = 700
+@export var max_speed = 900
 var original_pos : Vector2
 var velocity : Vector2
 
@@ -23,6 +24,9 @@ func _physics_process(delta):
 		else:	# Paddles
 			var speed = velocity.length()
 			var direction = (position - Collider.position).normalized()
+			# Accelerate a bit per paddle bounce up to max_speed
+			if speed < max_speed:
+				speed += 10
 			velocity = speed * direction
 			collide_sound.set_pitch_scale(2)
 		collide_sound.play()
